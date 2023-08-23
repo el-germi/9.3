@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!localStorage.getItem(cookie) || !Array.isArray(JSON.parse(localStorage.getItem(cookie))))
         localStorage.setItem(cookie, JSON.stringify([]));
 
+    repaint();
+
     document.getElementById("agregar").addEventListener("click", () => {
         let item = document.getElementById("item");
         if (item.value.length > 0) {
@@ -28,4 +30,5 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem(cookie, JSON.stringify([]));
         repaint();
     });
+
 });
