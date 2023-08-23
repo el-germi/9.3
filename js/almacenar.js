@@ -1,29 +1,31 @@
-const nomb = "lista";
+const cookie = "lista";
 
 function repaint() {
-    const con = document.getElementById("contenedor");
-    con.innerHTML = "";
-    JSON.parse(localStorage.getItem(nomb)).forEach(e => {
-        con.innerHTML += `<li>${e}</li>`;
+    const contenedor = document.getElementById("contenedor");
+    contenedor.innerHTML = "";
+    JSON.parse(localStorage.getItem(cookie)).forEach(e => {
+        contenedor.innerHTML += `<li>${e}</li>`;
     });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (!localStorage.getItem(nomb) || !Array.isArray(JSON.parse(localStorage.getItem(nomb))))
-        localStorage.setItem(nomb, JSON.stringify([]));
-    document.getElementById("agregar").addEventListener("click", () => {
-        let aa = document.getElementById("item");
-        if (aa.value.length > 0) {
-            let arr = JSON.parse(localStorage.getItem(nomb));
-            arr.push(aa.value);
+    if (!localStorage.getItem(cookie) || !Array.isArray(JSON.parse(localStorage.getItem(cookie))))
+        localStorage.setItem(cookie, JSON.stringify([]));
 
-            localStorage.setItem(nomb, JSON.stringify(arr))
-            aa.value = "";
+    document.getElementById("agregar").addEventListener("click", () => {
+        let item = document.getElementById("item");
+        if (item.value.length > 0) {
+            let arr = JSON.parse(localStorage.getItem(cookie));
+            arr.push(item.value);
+
+            localStorage.setItem(cookie, JSON.stringify(arr))
+            item.value = "";
             repaint();
         }
     });
+
     document.getElementById("limpiar").addEventListener("click", () => {
-        localStorage.setItem(nomb, JSON.stringify([]));
+        localStorage.setItem(cookie, JSON.stringify([]));
         repaint();
     });
 });
